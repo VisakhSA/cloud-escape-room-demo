@@ -111,20 +111,30 @@ git config --global user.email "your.email@example.com"
    ```
 
 4. **Access the application**
-   - **Local access**: 
+   - **Local Development**: 
      - Frontend: http://localhost:3000
      - Backend API: http://localhost:8080
-   - **Network access** (from other devices on same network):
-     - Frontend: http://[YOUR_IP]:3000
-     - Backend API: http://[YOUR_IP]:8080
-   
-   **Find your IP address:**
-   ```bash
-   # On Ubuntu/Linux
-   ip addr show | grep "inet " | grep -v 127.0.0.1
-   # Or simply
-   hostname -I
-   ```
+   - **Network/Cloud Access**: 
+     - Frontend: http://[your-ip]:3000
+     - Backend API: http://[your-ip]:8080
+   - **Killercoda/Cloud IDE**: Use the provided external URLs
+
+### Cloud Environment Setup (Killercoda, CodeSandbox, GitPod, etc.)
+
+For cloud development environments, the application is configured to accept connections from all hosts:
+
+```bash
+# The application will be accessible via:
+# - Killercoda: Generated URLs (e.g., xxx-xxx-3000.killercoda.com)
+# - GitPod: Workspace URL with port
+# - CodeSandbox: Preview URLs
+# - Any cloud IDE: External access URLs provided by the platform
+```
+
+**Important for Cloud Environments:**
+- Vite server configured with `allowedHosts: 'all'`
+- Both frontend and backend bind to `0.0.0.0` for external access
+- CORS enabled for cross-origin requests
 
 ### Quick Setup Script for Ubuntu
 
@@ -225,6 +235,19 @@ npm start
    ```bash
    # If using WSL, ensure Windows firewall allows the ports
    # Also install Node.js within WSL, not from Windows
+   ```
+
+5. **Cloud Environment Issues (Killercoda, GitPod, CodeSandbox)**
+   ```bash
+   # If you get "host not allowed" errors:
+   # The vite.config.js is already configured with allowedHosts: 'all'
+   
+   # If API calls fail in cloud environments:
+   # Check that both frontend (3000) and backend (8080) are running
+   # Use the cloud platform's provided URLs
+   
+   # For Killercoda specifically:
+   # Use the generated URLs like: xxx-3000.killercoda.com
    ```
 
 5. **Network access blocked (Ubuntu firewall)**

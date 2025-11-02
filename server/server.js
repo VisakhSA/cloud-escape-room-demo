@@ -33,5 +33,6 @@ if (process.env.NODE_ENV === 'production') {
 
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Cloud Escape Room server running on http://0.0.0.0:${PORT}`);
-  console.log(`🌐 Access from any device on your network at http://[YOUR_IP]:${PORT}`);
+  console.log(`🌐 Server accessible from all network interfaces`);
+  console.log(`📡 API endpoints: http://0.0.0.0:${PORT}/api/news`);
 });
