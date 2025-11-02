@@ -46,8 +46,8 @@ A professional, neon-themed website built for the Cloud Escape Room event featur
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/cloud-escape-room.git
-   cd cloud-escape-room
+   git clone https://github.com/VisakhSA/cloud-escape-room-demo.git
+   cd cloud-escape-room-demo
    ```
 
 2. **Install dependencies**
