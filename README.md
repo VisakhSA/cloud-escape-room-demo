@@ -111,8 +111,20 @@ git config --global user.email "your.email@example.com"
    ```
 
 4. **Access the application**
-   - Frontend: http://localhost:3000
-   - Backend API: http://localhost:8080
+   - **Local access**: 
+     - Frontend: http://localhost:3000
+     - Backend API: http://localhost:8080
+   - **Network access** (from other devices on same network):
+     - Frontend: http://[YOUR_IP]:3000
+     - Backend API: http://[YOUR_IP]:8080
+   
+   **Find your IP address:**
+   ```bash
+   # On Ubuntu/Linux
+   ip addr show | grep "inet " | grep -v 127.0.0.1
+   # Or simply
+   hostname -I
+   ```
 
 ### Quick Setup Script for Ubuntu
 
@@ -213,6 +225,24 @@ npm start
    ```bash
    # If using WSL, ensure Windows firewall allows the ports
    # Also install Node.js within WSL, not from Windows
+   ```
+
+5. **Network access blocked (Ubuntu firewall)**
+   ```bash
+   # Allow ports through Ubuntu firewall
+   sudo ufw allow 3000
+   sudo ufw allow 8080
+   
+   # Check firewall status
+   sudo ufw status
+   ```
+
+6. **Cannot access from other devices**
+   ```bash
+   # Check if services are listening on all interfaces
+   netstat -tlnp | grep -E "(3000|8080)"
+   
+   # Should show 0.0.0.0:3000 and :::8080 (not 127.0.0.1)
    ```
 
 ### General Issues

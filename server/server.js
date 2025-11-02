@@ -31,6 +31,7 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-app.listen(PORT, () => {
-  console.log(`🚀 Cloud Escape Room server running on http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`🚀 Cloud Escape Room server running on http://0.0.0.0:${PORT}`);
+  console.log(`🌐 Access from any device on your network at http://[YOUR_IP]:${PORT}`);
 });
