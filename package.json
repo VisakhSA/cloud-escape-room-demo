@@ -4,12 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"npm run server\" \"DANGEROUSLY_DISABLE_HOST_CHECK=true vite --host\"",
-    "dev-cloud": "concurrently \"npm run server\" \"DANGEROUSLY_DISABLE_HOST_CHECK=true vite --host 0.0.0.0\"",
+    "dev": "concurrently \"npm run server\" \"vite --host 0.0.0.0\"",
+    "dev-killercoda": "concurrently \"npm run server\" \"vite --host 0.0.0.0 --allowedHosts all\"",
     "server": "nodemon server/server.js",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview --port 8080 --host",
+    "preview": "vite preview --port 8080 --host 0.0.0.0",
     "start": "node server/server.js"
   },
   "dependencies": {
