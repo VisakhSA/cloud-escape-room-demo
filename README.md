@@ -39,8 +39,58 @@ A professional, neon-themed website built for the Cloud Escape Room event featur
 ## 🚦 Getting Started
 
 ### Prerequisites
-- Node.js (v18 or higher)
-- npm or yarn
+- Ubuntu 18.04+ (or other Debian-based distributions)
+- Terminal access with sudo privileges
+
+### Ubuntu Environment Setup
+
+#### 1. Update System Packages
+```bash
+sudo apt update && sudo apt upgrade -y
+```
+
+#### 2. Install Essential Build Tools
+```bash
+sudo apt install -y curl wget build-essential git
+```
+
+#### 3. Install Node.js and npm
+
+**Option A: Install Latest LTS Node.js (Recommended)**
+```bash
+# Install Node.js 20.x LTS
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+# Verify installation
+node --version
+npm --version
+```
+
+**Option B: Install via Ubuntu Package Manager (Alternative)**
+```bash
+sudo apt install -y nodejs npm
+
+# Update npm to latest version
+sudo npm install -g npm@latest
+```
+
+#### 4. Install Git (if not already installed)
+```bash
+sudo apt install -y git
+git --version
+```
+
+#### 5. Configure Git (Required for GitHub operations)
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+```
+
+### Prerequisites
+- Node.js (v18 or higher) ✅ Installed above
+- npm or yarn ✅ Installed above
+- Git ✅ Installed above
 
 ### Installation
 
@@ -63,6 +113,49 @@ A professional, neon-themed website built for the Cloud Escape Room event featur
 4. **Access the application**
    - Frontend: http://localhost:3000
    - Backend API: http://localhost:8080
+
+### Quick Setup Script for Ubuntu
+
+For a one-command setup on Ubuntu, you can use this script:
+
+```bash
+#!/bin/bash
+# Quick setup script for Cloud Escape Room on Ubuntu
+
+echo "🚀 Setting up Cloud Escape Room on Ubuntu..."
+
+# Update system
+sudo apt update
+
+# Install Node.js 20.x LTS
+echo "📦 Installing Node.js..."
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+# Install git if not present
+sudo apt install -y git
+
+# Clone repository
+echo "📥 Cloning repository..."
+git clone https://github.com/VisakhSA/cloud-escape-room-demo.git
+cd cloud-escape-room-demo
+
+# Install dependencies
+echo "📚 Installing dependencies..."
+npm install
+
+# Start the application
+echo "🌟 Starting Cloud Escape Room..."
+npm run dev
+```
+
+**To use this script:**
+```bash
+# Save the script as setup.sh
+curl -sSL https://raw.githubusercontent.com/VisakhSA/cloud-escape-room-demo/main/setup.sh -o setup.sh
+chmod +x setup.sh
+./setup.sh
+```
 
 ## 📜 Available Scripts
 
@@ -88,6 +181,69 @@ npm start
 ```
 
 **Made with ❤️ for the Cloud Escape Room Event**
+
+## 🐛 Troubleshooting
+
+### Ubuntu-Specific Issues
+
+1. **Permission denied errors with npm**
+   ```bash
+   # Fix npm permissions (avoid using sudo with npm)
+   mkdir ~/.npm-global
+   npm config set prefix '~/.npm-global'
+   echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.bashrc
+   source ~/.bashrc
+   ```
+
+2. **Node.js version too old**
+   ```bash
+   # Remove old Node.js and install latest
+   sudo apt remove nodejs npm
+   curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+   sudo apt-get install -y nodejs
+   ```
+
+3. **Build dependencies missing**
+   ```bash
+   # Install additional build tools if needed
+   sudo apt install -y python3 python3-pip gcc g++ make
+   ```
+
+4. **WSL (Windows Subsystem for Linux) specific**
+   ```bash
+   # If using WSL, ensure Windows firewall allows the ports
+   # Also install Node.js within WSL, not from Windows
+   ```
+
+### General Issues
+
+1. **Port already in use**
+   ```bash
+   lsof -ti:8080 | xargs kill -9
+   ```
+
+2. **Module not found errors**
+   ```bash
+   rm -rf node_modules package-lock.json
+   npm install
+   ```
+
+3. **Build failures**
+   ```bash
+   npm run build -- --verbose
+   ```
+
+### Performance Optimization for Ubuntu
+
+1. **Increase Node.js memory limit (for large builds)**
+   ```bash
+   export NODE_OPTIONS="--max-old-space-size=4096"
+   ```
+
+2. **Use npm cache for faster installs**
+   ```bash
+   npm config set cache ~/.npm-cache --global
+   ```
 
 ## React Compiler
 
