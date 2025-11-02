@@ -4,11 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"npm run server\" \"vite\"",
+    "dev": "concurrently \"npm run server\" \"DANGEROUSLY_DISABLE_HOST_CHECK=true vite --host\"",
+    "dev-cloud": "concurrently \"npm run server\" \"DANGEROUSLY_DISABLE_HOST_CHECK=true vite --host 0.0.0.0\"",
     "server": "nodemon server/server.js",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview --port 8080",
+    "preview": "vite preview --port 8080 --host",
     "start": "node server/server.js"
   },
   "dependencies": {
